@@ -45,12 +45,12 @@ class Model(db.Model):
     model_id = db.Column(db.Integer,
                         primary_key = True, 
                         autoincremnt = True)
-    name = db.Column(db.String(50), 
-                        db.ForeignKey(brand.brand_id),
+    name = db.Column(db.String(50),
                         nullable = False)
     year = db.Column(db.Integer, 
                         nullable=False)
-    brand_id = db.Column(db.String(5),
+    brand_id = db.Column(db.String(5), 
+                        db.ForeignKey(brand.brand_id),
                         nullable=False)
 
     brand = db.relationship("Brand", backref="models")
