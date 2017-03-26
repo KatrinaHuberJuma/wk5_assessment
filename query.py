@@ -22,12 +22,19 @@ init_app()
 
 # 1. What is the datatype of the returned value of
 # ``Brand.query.filter_by(name='Ford')``?
-
+        # ``Brand.query.filter_by(name='Ford')`` would return a query object.
+        # in order to get an instance of Brand (corresponding to a row in the brands
+        # database), you would have to tack .first() or .one() on the end
 
 
 # 2. In your own words, what is an association table, and what type of
 # relationship (many to one, many to many, one to one, etc.) does an
 # association table manage?
+        # An association table is a kind of "middle table" between two tables
+        # that have a "many to many" relationship (which is not directly possible).
+        # Each row in an association table bears a foreign key to two other tables.
+        # The "many to many"-ness is created by having multiple rows for containing
+        # a certain foreign key (allowing it to be related to multple other fks)
 
 
 
