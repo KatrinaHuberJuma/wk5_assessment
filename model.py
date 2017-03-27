@@ -23,11 +23,11 @@ class Brand(db.Model):
         return "\n< BRAND Name: %s, Id: %s >\n" % (self.name, self.brand_id)
 
     brand_id = db.Column(db.String(5),
-                        primary_key = True,
-                        autoincremnt = True)
+                        primary_key = True)
     name = db.Column(db.String(50),
                         nullable = False)
     founded = db.Column(db.Integer)
+    discontinued = db.Column(db.Integer)
     headquarters = db.Column(db.String(50))
 
 
@@ -44,39 +44,40 @@ class Model(db.Model):
 
     model_id = db.Column(db.Integer,
                         primary_key = True, 
-                        autoincremnt = True)
+                        autoincrement = True)
     name = db.Column(db.String(50),
                         nullable = False)
     year = db.Column(db.Integer, 
                         nullable=False)
     brand_id = db.Column(db.String(5), 
-                        db.ForeignKey(brand.brand_id),
+                        db.ForeignKey('brands.brand_id'),
                         nullable=False)
 
     brand = db.relationship("Brand", backref="models")
 
 
 
-class Award(db.Model):
-    """Car model."""
+# class Award(db.Model):
+#     """Car model."""
 
-    __tablename__ = "awards"
+#     __tablename__ = "awards"
 
-    def __repr__(self):
-        """Representation of an award"""
+#     def __repr__(self):
+#         """Representation of an award"""
 
-        return "\n<AWARD Name: %s, Id: %s, Winner_id: %s >\n" % (self.name, self.award_id, self.winner_id)
+#         return "\n<AWARD Name: %s, Id: %s, Winner_id: %s >\n" % (self.name, self.award_id, self.winner_id)
 
-    award_id = db.Column(db.Integer,
-                        nullable=False)
-    year = db.Column(db.Integer,
-                        nullable=False)
-    winner_id = db.Column(db.Integer,
-                        db.ForeignKey(model.model_id))
-    name = db.Column(db.String(50),
-                        nullable=False)
+#     award_id = db.Column(db.Integer,
+#                         autoincrement = True,
+#                         nullable=False)
+#     year = db.Column(db.Integer,
+#                         nullable=False)
+#     winner_id = db.Column(db.Integer,
+#                         db.ForeignKey('model.model_id'))
+#     name = db.Column(db.String(50),
+#                         nullable=False)
 
-    model = db.relationship("Model", backref="awards")
+#     model = db.relationship("Model", backref="awards")
 
 
 # End Part 1
